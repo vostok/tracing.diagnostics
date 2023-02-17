@@ -1,0 +1,17 @@
+notests *default:
+  build:
+    target: Vostok.Tracing.Diagnostics.sln
+    configuration: NoTests
+    tool:
+      name: dotnet
+
+  install:
+    - Vostok.Tracing.Diagnostics/bin/Release/netstandard2.0/Vostok.Tracing.Diagnostics.dll
+
+  deps:
+    - vostok.devtools
+
+full-build > notests:
+  build:
+    target: Vostok.Tracing.Diagnostics.sln
+    configuration: Release
