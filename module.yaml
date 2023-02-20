@@ -9,6 +9,8 @@ notests *default:
     - Vostok.Tracing.Diagnostics/bin/Release/netstandard2.0/Vostok.Tracing.Diagnostics.dll
 
   deps:
+    - vostok.tracing
+    - vostok.tracing.abstractions
     - vostok.devtools
 
 full-build > notests:
