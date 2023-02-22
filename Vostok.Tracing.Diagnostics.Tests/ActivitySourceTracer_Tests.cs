@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using FluentAssertions;
 using NUnit.Framework;
-using Vostok.Context;
 using Vostok.Tracing.Abstractions;
 
 namespace Vostok.Tracing.Diagnostics.Tests;
@@ -27,7 +26,10 @@ internal class ActivitySourceTracer_Tests
         activitySource = new ActivitySource(activitySourceName);
 
         tracerSettings = new TracerSettings(new DevNullSpanSender());
-        activitySourceTracer = new ActivitySourceTracer(tracerSettings, activitySource);
+        activitySourceTracer = new ActivitySourceTracer(new ActivitySourceTracerSettings
+        {
+            ActivitySource = activitySource
+        });
         tracer = new Tracer(tracerSettings);
     }
 

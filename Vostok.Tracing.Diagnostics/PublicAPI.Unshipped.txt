@@ -1,0 +1,12 @@
+const Vostok.Tracing.Diagnostics.TracingConstants.VostokTracerActivityName = "Vostok.Tracer.Activity" -> string!
+const Vostok.Tracing.Diagnostics.TracingConstants.VostokTracerActivitySourceName = "Vostok.Tracer" -> string!
+Vostok.Tracing.Diagnostics.ActivitySourceTracer
+Vostok.Tracing.Diagnostics.ActivitySourceTracer.ActivitySourceTracer(Vostok.Tracing.Diagnostics.ActivitySourceTracerSettings! settings) -> void
+Vostok.Tracing.Diagnostics.ActivitySourceTracer.BeginSpan() -> Vostok.Tracing.Abstractions.ISpanBuilder!
+Vostok.Tracing.Diagnostics.ActivitySourceTracer.CurrentContext.get -> Vostok.Tracing.Abstractions.TraceContext?
+Vostok.Tracing.Diagnostics.ActivitySourceTracer.CurrentContext.set -> void
+Vostok.Tracing.Diagnostics.ActivitySourceTracerSettings
+Vostok.Tracing.Diagnostics.ActivitySourceTracerSettings.ActivitySource.get -> System.Diagnostics.ActivitySource!
+Vostok.Tracing.Diagnostics.ActivitySourceTracerSettings.ActivitySource.set -> void
+Vostok.Tracing.Diagnostics.ActivitySourceTracerSettings.ActivitySourceTracerSettings() -> void
+Vostok.Tracing.Diagnostics.TracingConstants

@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using Vostok.Commons.Environment;
+﻿using System.Diagnostics;
+using JetBrains.Annotations;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Diagnostics.Models;
 
@@ -9,34 +8,21 @@ namespace Vostok.Tracing.Diagnostics;
 /// <summary>
 /// <see cref="ITracer"/> implementation based on <see cref="ActivitySource"/>.
 /// </summary>
+[PublicAPI]
 public class ActivitySourceTracer : ITracer
 {
-    private readonly ActivitySource activitySource;
-    private readonly IEnumerable<KeyValuePair<string, object?>> initialTags;
-
+    private readonly ActivitySourceTracerSettings settings;
+    
     static ActivitySourceTracer()
     {
         //Helper.SynchronizeContexts();
     }
     
     /// <summary>
-    /// <para>Creates <see cref="ITracer"/> implementation based on given <paramref name="activitySource"/>.</para>
-    /// <para>If <paramref name="activitySource"/> isn't specified, creates a new one with <see cref="TracingConstants.VostokTracerActivitySourceName"/> name.</para>
+    /// <para>Creates <see cref="ITracer"/> implementation based on given <paramref name="settings.ActivitySource"/>.</para>
     /// </summary>
-    // todo (kungurtsev, 20.02.2023): delete settings?
-    public ActivitySourceTracer(TracerSettings settings, ActivitySource? activitySource = null)
-    {
-        this.activitySource = activitySource ?? new ActivitySource(TracingConstants.VostokTracerActivitySourceName);
-
-        var initialTagsList = new List<KeyValuePair<string, object?>>
-        {
-            new(WellKnownAnnotations.Common.Host, settings.Host ?? EnvironmentInfo.Host),
-            new(WellKnownAnnotations.Common.Application, settings.Application ?? EnvironmentInfo.Application)
-        };
-        if (settings.Environment != null)
-            initialTagsList.Add(new(WellKnownAnnotations.Common.Environment, settings.Environment));
-        initialTags = initialTagsList.ToArray();
-    }
+    public ActivitySourceTracer(ActivitySourceTracerSettings settings) =>
+        this.settings = settings;
 
     /// <summary>
     /// Returns <see cref="TraceContext"/> constructed from <see cref="Activity.Current"/> <see cref="Activity"/>.
@@ -52,7 +38,7 @@ public class ActivitySourceTracer : ITracer
     /// </summary>
     public ISpanBuilder BeginSpan()
     {
-        var activity = activitySource.StartActivity(TracingConstants.VostokTracerActivityName, ActivityKind.Internal, new ActivityContext(), initialTags);
+        var activity = settings.ActivitySource.StartActivity(TracingConstants.VostokTracerActivityName, ActivityKind.Internal, new ActivityContext());
         return new ActivitySpanBuilder(activity);
     }
 }
