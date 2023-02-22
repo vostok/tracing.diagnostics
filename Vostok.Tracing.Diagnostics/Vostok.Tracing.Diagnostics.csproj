@@ -1,34 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <Import Project="..\..\vostok.devtools\library-common-props\Main-Project.props" />
-    <Import Project="..\..\vostok.devtools\git-commit-to-assembly-title\Vostok.Tools.GitCommit2AssemblyTitle.props" />
-    <PropertyGroup>
-        <Configurations>Debug;Release</Configurations>
-        <TargetFrameworks>net6.0</TargetFrameworks>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-    <PropertyGroup>
-        <VersionPrefix>0.0.1</VersionPrefix>
-    </PropertyGroup>
-    <PropertyGroup>
-        <Title>Vostok.Tracing.Diagnostics</Title>
-        <Description>Vostok.Tracing implementation based on System.Diagnostics.ActivitySource</Description>
-    </PropertyGroup>
-    <PropertyGroup>
-        <PackageProjectUrl>https://github.com/vostok/tracing.diagnostics</PackageProjectUrl>
-        <PackageLicenseUrl>https://github.com/vostok/tracing.diagnostics/blob/master/LICENSE</PackageLicenseUrl>
-        <PackageTags>vostok vostok.tracing opentelemetry</PackageTags>
-        <PackageReleaseNotes>https://github.com/vostok/tracing.diagnostics/blob/master/CHANGELOG.md</PackageReleaseNotes>
-        <RepositoryUrl>https://github.com/vostok/tracing.diagnostics</RepositoryUrl>
-    </PropertyGroup>
-    <ItemGroup>
-        <Reference Include="Vostok.Tracing">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>..\..\vostok.tracing\Vostok.Tracing\bin\Release\$(ReferencesFramework)\Vostok.Tracing.dll</HintPath>
-        </Reference>
-        <Reference Include="Vostok.Tracing.Abstractions">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>..\..\vostok.tracing.abstractions\Vostok.Tracing.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Tracing.Abstractions.dll</HintPath>
-        </Reference>
-    </ItemGroup>
+  <Import Project="..\..\vostok.devtools\library-common-props\Main-Project.props" />
+  <Import Project="..\..\vostok.devtools\git-commit-to-assembly-title\Vostok.Tools.GitCommit2AssemblyTitle.props" />
+  <PropertyGroup>
+    <Configurations>Debug;Release</Configurations>
+    <TargetFrameworks>net6.0</TargetFrameworks>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VersionPrefix>0.0.1</VersionPrefix>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Title>Vostok.Tracing.Diagnostics</Title>
+    <Description>Vostok.Tracing implementation based on System.Diagnostics.ActivitySource</Description>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PackageProjectUrl>https://github.com/vostok/tracing.diagnostics</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/vostok/tracing.diagnostics/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>vostok vostok.tracing opentelemetry</PackageTags>
+    <PackageReleaseNotes>https://github.com/vostok/tracing.diagnostics/blob/master/CHANGELOG.md</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/vostok/tracing.diagnostics</RepositoryUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Vostok.Tracing">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\vostok.tracing\Vostok.Tracing\bin\Release\$(ReferencesFramework)\Vostok.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="Vostok.Tracing.Abstractions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\vostok.tracing.abstractions\Vostok.Tracing.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Tracing.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Vostok.Context">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\vostok.context\Vostok.Context\bin\Release\netstandard2.0\Vostok.Context.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

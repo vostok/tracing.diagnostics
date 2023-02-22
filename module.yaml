@@ -9,13 +9,13 @@ notests *default:
     - Vostok.Tracing.Diagnostics/bin/Release/net6.0/Vostok.Tracing.Diagnostics.dll
 
   deps:
+    - vostok.context@value-storage
     - vostok.tracing
     - vostok.tracing.abstractions
     - vostok.devtools
 
 full-build > notests:
   deps:
-    - vostok.context
   build:
     target: Vostok.Tracing.Diagnostics.sln
     configuration: Release

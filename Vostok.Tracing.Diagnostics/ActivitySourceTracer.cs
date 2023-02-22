@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using JetBrains.Annotations;
+using Vostok.Context;
 using Vostok.Tracing.Abstractions;
 using Vostok.Tracing.Diagnostics.Models;
 
@@ -15,7 +16,10 @@ public class ActivitySourceTracer : ITracer
     
     static ActivitySourceTracer()
     {
-        //Helper.SynchronizeContexts();
+        // note (kungurtsev, 22.02.2023): in .NET 7 we can replace it with Activity.CurrentChanged
+        FlowingContext.Globals.SetValueStorage(
+            () => Activity.Current?.ToTraceContext(),
+            x => Activity.Current = x?.ToActivity());
     }
     
     /// <summary>
@@ -38,7 +42,7 @@ public class ActivitySourceTracer : ITracer
     /// </summary>
     public ISpanBuilder BeginSpan()
     {
-        var activity = settings.ActivitySource.StartActivity(TracingConstants.VostokTracerActivityName, ActivityKind.Internal, new ActivityContext());
+        var activity = settings.ActivitySource.StartActivity(TracingConstants.VostokTracerActivityName, ActivityKind.Internal, Activity.Current?.Context ?? new ActivityContext());
         return new ActivitySpanBuilder(activity);
     }
 }
