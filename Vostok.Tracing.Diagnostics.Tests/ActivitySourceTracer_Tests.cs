@@ -53,17 +53,6 @@ internal class ActivitySourceTracer_Tests
         span2.CurrentSpan.SpanId.Should().NotBe(Guid.Empty);
         span2.CurrentSpan.ParentSpanId.Should().Be(span1.CurrentSpan.SpanId);
     }
-
-    [Test]
-    public void BeginSpan_should_create_tree()
-    {
-        using (var span1 = activitySourceTracer.BeginSpan())
-        using (var span2 = activitySourceTracer.BeginSpan())
-        {
-            span2.CurrentSpan.TraceId.Should().Be(span1.CurrentSpan.TraceId);
-            span2.CurrentSpan.ParentSpanId.Should().Be(span1.CurrentSpan.SpanId);
-        }
-    }
     
     [Test]
     public void BeginSpan_should_sync_with_Tracer()
