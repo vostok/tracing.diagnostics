@@ -6,7 +6,7 @@ notests *default:
       name: dotnet
 
   install:
-    - Vostok.Tracing.Diagnostics/bin/Release/netstandard2.0/Vostok.Tracing.Diagnostics.dll
+    - Vostok.Tracing.Diagnostics/bin/Release/net6.0/Vostok.Tracing.Diagnostics.dll
 
   deps:
     - vostok.tracing
@@ -14,6 +14,8 @@ notests *default:
     - vostok.devtools
 
 full-build > notests:
+  deps:
+    - vostok.context
   build:
     target: Vostok.Tracing.Diagnostics.sln
     configuration: Release

@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Reflection;
+using System.Threading;
 using Vostok.Tracing.Abstractions;
 
 namespace Vostok.Tracing.Diagnostics.Models;
@@ -15,7 +17,7 @@ internal static class Helper
 
     public static Activity ToActivity(this TraceContext context)
     {
-        var activity = new Activity(TracingConstants.VostokActivityName);
+        var activity = new Activity(TracingConstants.VostokTracerActivityName);
         activity.SetParentId(
             ActivityTraceId.CreateFromString(context.TraceId.ToString("N")),
             ActivitySpanId.CreateFromString(context.SpanId.ToString("N").AsSpan()[..16]));
