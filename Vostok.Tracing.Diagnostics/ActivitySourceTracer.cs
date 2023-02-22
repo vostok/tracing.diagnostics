@@ -14,13 +14,19 @@ public class ActivitySourceTracer : ITracer
     private readonly ActivitySource activitySource;
     private readonly IEnumerable<KeyValuePair<string, object?>> initialTags;
 
+    static ActivitySourceTracer()
+    {
+        //Helper.SynchronizeContexts();
+    }
+    
     /// <summary>
     /// <para>Creates <see cref="ITracer"/> implementation based on given <paramref name="activitySource"/>.</para>
-    /// <para>If <paramref name="activitySource"/> isn't specified, creates a new one with <see cref="TracingConstants.VostokActivitySourceName"/> name.</para>
+    /// <para>If <paramref name="activitySource"/> isn't specified, creates a new one with <see cref="TracingConstants.VostokTracerActivitySourceName"/> name.</para>
     /// </summary>
+    // todo (kungurtsev, 20.02.2023): delete settings?
     public ActivitySourceTracer(TracerSettings settings, ActivitySource? activitySource = null)
     {
-        this.activitySource = activitySource ?? new ActivitySource(TracingConstants.VostokActivitySourceName);
+        this.activitySource = activitySource ?? new ActivitySource(TracingConstants.VostokTracerActivitySourceName);
 
         var initialTagsList = new List<KeyValuePair<string, object?>>
         {
@@ -42,11 +48,11 @@ public class ActivitySourceTracer : ITracer
     }
 
     /// <summary>
-    /// Starts new <see cref="Activity"/> with <see cref="TracingConstants.VostokActivityName"/> name.
+    /// Starts new <see cref="Activity"/> with <see cref="TracingConstants.VostokTracerActivityName"/> name.
     /// </summary>
     public ISpanBuilder BeginSpan()
     {
-        var activity = activitySource.StartActivity(TracingConstants.VostokActivityName, ActivityKind.Internal, new ActivityContext(), initialTags);
+        var activity = activitySource.StartActivity(TracingConstants.VostokTracerActivityName, ActivityKind.Internal, new ActivityContext(), initialTags);
         return new ActivitySpanBuilder(activity);
     }
 }

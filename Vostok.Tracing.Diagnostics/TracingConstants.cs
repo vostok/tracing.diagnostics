@@ -2,6 +2,6 @@ namespace Vostok.Tracing.Diagnostics;
 
 public static class TracingConstants
 {
-    public const string VostokActivityName = "Vostok.Tracer.Activity";
-    public const string VostokActivitySourceName = "Vostok.Tracer";
+    public const string VostokTracerActivityName = "Vostok.Tracer.Activity";
+    public const string VostokTracerActivitySourceName = "Vostok.Tracer";
 }
