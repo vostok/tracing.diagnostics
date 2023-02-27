@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using Vostok.Tracing.Abstractions;
+using Vostok.Tracing.Diagnostics.Helpers;
 
 namespace Vostok.Tracing.Diagnostics.Models;
 

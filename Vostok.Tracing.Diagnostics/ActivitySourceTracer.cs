@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using Vostok.Context;
 using Vostok.Tracing.Abstractions;
+using Vostok.Tracing.Diagnostics.Helpers;
 using Vostok.Tracing.Diagnostics.Models;
 
 namespace Vostok.Tracing.Diagnostics;
