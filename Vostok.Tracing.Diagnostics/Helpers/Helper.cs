@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Vostok.Tracing.Abstractions;
 
-namespace Vostok.Tracing.Diagnostics.Models;
+namespace Vostok.Tracing.Diagnostics.Helpers;
 
 internal static class Helper
 {
@@ -16,7 +16,7 @@ internal static class Helper
         ActivityTraceIdSetter = BuildSetter("_traceId");
         ActivitySpanIdSetter = BuildSetter("_spanId");
     }
-    
+
     public static TraceContext? ToTraceContext(this Activity activity)
     {
         var traceId = activity.TraceId.ToGuid();
@@ -32,20 +32,14 @@ internal static class Helper
 
         ActivityTraceIdSetter(activity, traceId);
         ActivitySpanIdSetter(activity, spanId);
-        
+
         return activity;
     }
-
-    public static Guid ToGuid(this ActivityTraceId traceId) =>
-        Guid.TryParse(traceId.ToHexString(), out var guid) ? guid : default;
-
-    public static Guid ToGuid(this ActivitySpanId spanId) =>
-        Guid.TryParse(spanId.ToHexString().PadRight(32, '0'), out var guid) ? guid : default;
 
     private static Action<Activity, string> BuildSetter(string fieldName)
     {
         var type = typeof(Activity);
-        var field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic) 
+        var field = type.GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic)
                     ?? throw new Exception($"Activity don't have '{fieldName}' field.");
 
         var inputActivity = Expression.Parameter(typeof(Activity));
