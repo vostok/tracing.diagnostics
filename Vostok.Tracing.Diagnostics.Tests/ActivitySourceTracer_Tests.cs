@@ -68,7 +68,7 @@ internal class ActivitySourceTracer_Tests
         using (var span2 = activitySourceTracer.BeginSpan())
         {
             span2.CurrentSpan.TraceId.Should().Be(span1.CurrentSpan.TraceId);
-            span2.CurrentSpan.ParentSpanId.Should().Be(span1.CurrentSpan.SpanId);
+            span2.CurrentSpan.ParentSpanId.Should().Be(span1.CurrentSpan.SpanId.Shortify());
         }
     }
 
@@ -78,7 +78,8 @@ internal class ActivitySourceTracer_Tests
         var traceContext = new TraceContext(Guid.NewGuid(), Guid.NewGuid());
         
         activitySourceTracer.CurrentContext = traceContext;
-        activitySourceTracer.CurrentContext.Should().BeEquivalentTo(traceContext);
+        activitySourceTracer.CurrentContext.TraceId.Should().Be(traceContext.TraceId);
+        activitySourceTracer.CurrentContext.SpanId.Should().Be(traceContext.SpanId.Shortify());
     }
     
     [Test]
@@ -102,7 +103,7 @@ internal class ActivitySourceTracer_Tests
             activitySourceTracer.CurrentContext.Should().NotBeNull();
             activitySourceTracer.CurrentContext.Should().BeEquivalentTo(tracer.CurrentContext);
             activitySourceTracer.CurrentContext!.TraceId.Should().Be(span.CurrentSpan.TraceId);
-            activitySourceTracer.CurrentContext!.SpanId.Should().Be(span.CurrentSpan.SpanId);
+            activitySourceTracer.CurrentContext!.SpanId.Should().Be(span.CurrentSpan.SpanId.Shortify());
         }
 
         tracer.CurrentContext.Should().BeNull();

@@ -28,7 +28,7 @@ internal static class Helper
     {
         var activity = new Activity(TracingConstants.VostokTracerActivityName);
         var traceId = context.TraceId.ToString("N");
-        var spanId = context.SpanId.ToString("N"); //[..16];
+        var spanId = context.SpanId.ToString("N")[..16];
 
         ActivityTraceIdSetter(activity, traceId);
         ActivitySpanIdSetter(activity, spanId);
