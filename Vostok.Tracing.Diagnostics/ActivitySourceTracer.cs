@@ -23,7 +23,7 @@ public class ActivitySourceTracer : ITracer
             x =>
             {
                 // note (kungurtsev, 23.03.2023): modification of existing activity brakes traces
-                if (Activity.Current == null || x == null)
+                if (x == null || Activity.Current == null || Activity.Current.OperationName == TracingConstants.VostokTracerActivityName)
                     Activity.Current = x?.ToActivity();
             });
     }
