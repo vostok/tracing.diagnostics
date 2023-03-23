@@ -96,7 +96,7 @@ internal class ActivitySourceTracer_Tests
         }
 
         tracer.CurrentContext.Should().BeNull();
-        tracer.CurrentContext.Should().BeNull();
+        activitySourceTracer.CurrentContext.Should().BeNull();
 
         using (var span = tracer.BeginSpan())
         {
@@ -107,6 +107,6 @@ internal class ActivitySourceTracer_Tests
         }
 
         tracer.CurrentContext.Should().BeNull();
-        tracer.CurrentContext.Should().BeNull();
+        activitySourceTracer.CurrentContext.Should().BeNull();
     }
 }

@@ -20,7 +20,12 @@ public class ActivitySourceTracer : ITracer
         // note (kungurtsev, 22.02.2023): in .NET 7 we can replace it with Activity.CurrentChanged
         FlowingContext.Globals.SetValueStorage(
             () => Activity.Current?.ToTraceContext(),
-            x => Activity.Current = x?.ToActivity());
+            x =>
+            {
+                // note (kungurtsev, 23.03.2023): modification of existing activity brakes traces
+                if (Activity.Current == null || x == null)
+                    Activity.Current = x?.ToActivity();
+            });
     }
     
     /// <summary>
