@@ -23,6 +23,9 @@ public class ActivitySourceTracer : ITracer
             x =>
             {
                 // note (kungurtsev, 23.03.2023): modification of existing activity brakes traces
+                // it happens because ToActivity creates fake activity which is not being recorded (Activity.Recorded)
+                // so all child activities will be also arent' recorded
+                // for example it may happens in Vostok.Applications.AspNetCore.Middlewares.DistributedContextMiddleware
                 if (x == null || Activity.Current == null || Activity.Current.OperationName == TracingConstants.VostokTracerActivityName)
                     Activity.Current = x?.ToActivity();
             });
