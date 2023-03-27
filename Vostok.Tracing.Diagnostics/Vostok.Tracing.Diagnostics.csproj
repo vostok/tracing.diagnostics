@@ -8,7 +8,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <PropertyGroup>
-        <VersionPrefix>0.0.1</VersionPrefix>
+        <VersionPrefix>0.1.0</VersionPrefix>
     </PropertyGroup>
     <PropertyGroup>
         <Title>Vostok.Tracing.Diagnostics</Title>
