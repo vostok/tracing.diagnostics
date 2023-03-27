@@ -14,7 +14,7 @@ namespace Vostok.Tracing.Diagnostics;
 public class ActivitySourceTracer : ITracer
 {
     private readonly ActivitySourceTracerSettings settings;
-    
+
     static ActivitySourceTracer()
     {
         // note (kungurtsev, 22.02.2023): in .NET 7 we can replace it with Activity.CurrentChanged
@@ -30,7 +30,7 @@ public class ActivitySourceTracer : ITracer
                     Activity.Current = x?.ToActivity();
             });
     }
-    
+
     /// <summary>
     /// <para>Creates <see cref="ITracer"/> implementation based on given <paramref name="settings.ActivitySource"/>.</para>
     /// </summary>
