@@ -10,12 +10,13 @@ notests *default:
 
   deps:
     - vostok.context@value-storage
-    - vostok.tracing
     - vostok.tracing.abstractions
     - vostok.devtools
 
 full-build > notests:
   deps:
+    - vostok.tracing
+
   build:
     target: Vostok.Tracing.Diagnostics.sln
     configuration: Release
