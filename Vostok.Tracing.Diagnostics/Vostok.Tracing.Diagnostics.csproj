@@ -28,7 +28,7 @@
         </Reference>
         <Reference Include="Vostok.Context">
             <SpecificVersion>False</SpecificVersion>
-            <HintPath>..\..\vostok.context\Vostok.Context\bin\Release\netstandard2.0\Vostok.Context.dll</HintPath>
+            <HintPath>..\..\vostok.context\Vostok.Context\bin\Release\$(ReferencesFramework)\Vostok.Context.dll</HintPath>
         </Reference>
     </ItemGroup>
 </Project>

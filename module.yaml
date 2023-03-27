@@ -9,7 +9,7 @@ notests *default:
     - Vostok.Tracing.Diagnostics/bin/Release/net6.0/Vostok.Tracing.Diagnostics.dll
 
   deps:
-    - vostok.context@value-storage
+    - vostok.context
     - vostok.tracing.abstractions
     - vostok.devtools
 
