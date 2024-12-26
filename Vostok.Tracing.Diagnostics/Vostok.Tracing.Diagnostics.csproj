@@ -22,13 +22,7 @@
         <RepositoryUrl>https://github.com/vostok/tracing.diagnostics</RepositoryUrl>
     </PropertyGroup>
     <ItemGroup>
-        <Reference Include="Vostok.Tracing.Abstractions">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>..\..\vostok.tracing.abstractions\Vostok.Tracing.Abstractions\bin\Release\$(ReferencesFramework)\Vostok.Tracing.Abstractions.dll</HintPath>
-        </Reference>
-        <Reference Include="Vostok.Context">
-            <SpecificVersion>False</SpecificVersion>
-            <HintPath>..\..\vostok.context\Vostok.Context\bin\Release\$(ReferencesFramework)\Vostok.Context.dll</HintPath>
-        </Reference>
+        <ModuleReference Include="vostok.context" />
+        <ModuleReference Include="vostok.tracing.abstractions" />
     </ItemGroup>
 </Project>
