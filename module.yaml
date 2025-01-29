@@ -7,6 +7,13 @@ notests *default:
 
   install:
     - Vostok.Tracing.Diagnostics/bin/Release/net6.0/Vostok.Tracing.Diagnostics.dll
+    - groups:
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.Tracing.Diagnostics/bin/Release/net6.0/Vostok.Tracing.Diagnostics.dll
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.Tracing.Diagnostics/bin/Release/net8.0/Vostok.Tracing.Diagnostics.dll
 
   deps:
     - vostok.context
@@ -17,6 +24,18 @@ full-build > notests:
   deps:
     - vostok.tracing
 
+  install:
+    - Vostok.Tracing.Diagnostics/bin/Release/net6.0/Vostok.Tracing.Diagnostics.dll
+    - groups:
+        - target-framework: "net6.0"
+          libraries:
+            - Vostok.Tracing.Diagnostics/bin/Release/net6.0/Vostok.Tracing.Diagnostics.dll
+        - target-framework: "net8.0"
+          libraries:
+            - Vostok.Tracing.Diagnostics/bin/Release/net8.0/Vostok.Tracing.Diagnostics.dll
+
   build:
     target: Vostok.Tracing.Diagnostics.sln
     configuration: Release
+    tool:
+      name: dotnet
