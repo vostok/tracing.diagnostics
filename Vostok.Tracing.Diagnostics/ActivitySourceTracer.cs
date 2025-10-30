@@ -13,6 +13,9 @@ namespace Vostok.Tracing.Diagnostics;
 [PublicAPI]
 public class ActivitySourceTracer : ITracer
 {
+    // (deniaa, 30.10.2025): For backward compatibility with ClusterClients which sends requests with Context-Global header with trace information to legacy backends that don't know about traceparent-s headers.  
+    private const string DistributedGlobalName = "vostok.tracing.context";
+    
     private readonly ActivitySourceTracerSettings settings;
 
     static ActivitySourceTracer()
@@ -29,6 +32,7 @@ public class ActivitySourceTracer : ITracer
                 if (x == null || Activity.Current == null || Activity.Current.OperationName == TracingConstants.VostokTracerActivityName)
                     Activity.Current = x?.ToActivity();
             });
+        FlowingContext.Configuration.RegisterDistributedGlobal(DistributedGlobalName, new TraceContextSerializer());
     }
 
     /// <summary>

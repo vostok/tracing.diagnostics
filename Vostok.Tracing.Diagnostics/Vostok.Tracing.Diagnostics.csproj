@@ -31,4 +31,8 @@
             <HintPath>..\..\vostok.context\Vostok.Context\bin\Release\$(ReferencesFramework)\Vostok.Context.dll</HintPath>
         </Reference>
     </ItemGroup>
+
+    <ItemGroup>
+        <Compile Include="..\..\vostok.tracing\Vostok.Tracing\TraceContextSerializer.cs" Link="Commons\TraceContextSerializer.cs" />
+    </ItemGroup>
 </Project>
